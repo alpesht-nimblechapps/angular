@@ -1,0 +1,37 @@
+<form name="categoryEditForm" class="form-horizontal" role="form">
+    <table class="noborder editCategory">
+        <!--    <tr class="label-tr">
+                <td>Category ID: {{category.iCategoryID}}<input type="hidden" name="iCategoryID" value="{{category.iCategoryID}}"></td>
+            </tr>-->
+        <tr class="label-tr">
+            <td>Category Name:</td>
+            <td class="input-td">
+                <input type="text" name="vCategoryName" class="form-control" ng-model="category.vCategoryName" value="{{category.vCategoryName}}">
+                <span ng-show="categoryEditForm.vCategoryName.$error.vCategoryName" class="help-inline">Category is not valid</span>
+            </td>
+        </tr>
+        <tr class="label-tr">
+            <td>Description: </td>
+            <td class="input-td">
+                <textarea class="form-control" name="tDesc" placeholder="Category description" ng-model="category.tDesc">{{category.tDesc}}</textarea>
+                <small class="errorMessage" data-ng-show="categoryEditForm.tDesc.$dirty && categoryEditForm.tDesc.$invalid"> Enter Description.</small>
+            </td>
+        </tr>
+        <tr class="label-tr">
+            <td>Category Image: </td>
+            <td class="input-td"><input type="file" class="width-35 btn btn-sm btn-primary"  ng-file-select ng-model="categoryImage" name="vImage" accept="image/*" ng-file-change="generateThumb(categoryImage, $files)"></td>
+        </tr>
+        <tr class="label-tr">
+            <td>
+                <input type="hidden" name="edit" value="edit" ng-model="category.edit">
+                <button type="submit" class="width-35 btn btn-sm btn-primary" data-ng-disabled="categoryEditForm.$invalid" ng-click="addCategory(category,categoryImage);" >
+                    Edit Category
+                </button>
+                <button class="width-35 btn btn-sm btn-primary" ng-click="setEditId(-1)">
+                    Cancel
+                </button>
+            </td>
+        </tr>
+    </table>
+</form>
+<!--  class="editRowTd" -->

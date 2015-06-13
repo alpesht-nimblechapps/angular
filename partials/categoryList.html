@@ -1,0 +1,43 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">Category List</li>
+        <a ng-click="logout();" style="float: right; margin-left: 10px">Logout</a>
+        <a href="#/category" style="float: right">Add New Category</a>
+    </ul>
+</div>
+<div class="page-content" ng-controller="categoryList">
+    <div style="display: none"><p><strong>Filter:</strong> {{tableParams.filter() | json}} </div>
+
+    <table ng-table="tableParams" show-filter="true" class="table">
+        <tbody ng-repeat="category in $data">
+            <tr id="tr{{category.iCategoryID}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                <td data-title="'Category ID'" filter="{ 'iCategoryID': 'text' }" sortable="'iCategoryID'" class="rowId">
+                    {{category.iCategoryID}}
+                </td>
+                <td data-title="'Category Name'" filter="{ 'vCategoryName': 'text' }" sortable="'vCategoryName'" class="rowId">
+                    {{category.vCategoryName}}
+                </td>
+                <td data-title="'Category Image'">
+                    <img src="{{category.vImage}}" ng-hide="!category.vImage.length">
+                </td>
+                <td class="rowTd" >
+                    <button class="width-35 btn btn-sm btn-primary" id="editRowBtn{{category.iCategoryID}}"  ng-click="setEditId(category.iCategoryID)">
+                        Edit
+                    </button>
+                    <!--<input type=button id="editRowBtn{{category.iCategoryID}}" value="edit" ng-click="setEditId(category.iCategoryID)">-->
+                </td>
+            </tr>
+            <tr ng-show="editId === category.iCategoryID" ng-if="editId === category.iCategoryID">
+                <td colspan="7" ng-include src="'partials/editCategoryRow.html'"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<script>
+            $window.location.reload();
+</script>
+<!-- /.page-content -->

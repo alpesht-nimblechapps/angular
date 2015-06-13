@@ -1,0 +1,73 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">Category Add</li>
+        <a ng-click="logout();" style="float: right">Logout</a>
+    </ul>
+</div>
+<div class="page-content">
+    <div class="row">
+        <div class="space-6"></div>
+        <div class="col-sm-6 col-sm-offset-1">
+            <div id="login-box" class="login-box visible widget-box no-border">
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <h4 class="header blue lighter bigger">
+                            Add Category
+                        </h4>
+                        <br/>
+                        <form name="categoryForm" class="form-horizontal" role="form">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label no-padding-right" for="vCategoryName">Category Name</label>
+                                    <div class="col-sm-7">
+                                        <span class="block input-icon input-icon-right">
+                                            <input type="text" class="form-control" placeholder="Category Name" name="vCategoryName" ng-model="category.vCategoryName" focus/>
+                                            <span ng-show="categoryForm.vCategoryName.$error.vCategoryName" class="help-inline">Category is not valid</span> 
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label no-padding-right" for="tDesc">Description</label>
+                                    <div class="col-sm-7">
+                                        <span class="block input-icon input-icon-right">
+                                            <textarea class="form-control" name="tDesc" placeholder="Category description" ng-model="category.tDesc"></textarea>
+                                            <small class="errorMessage" data-ng-show="categoryForm.tDesc.$dirty && categoryForm.tDesc.$invalid"> Enter Description.</small>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label no-padding-right" for="vImage">Category Image</label>
+                                    <div class="col-sm-7">
+                                        <span class="block input-icon input-icon-right">
+                                            <!--<div class="button" ng-file-select ng-model="category.vImage" ng-file-change="upload($files)">Select File</div>-->
+                                            <input type="file" ng-file-select ng-model="categoryImage" name="vImage" accept="image/*" ng-file-change="generateThumb(categoryImage, $files)">
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <span class="lbl col-sm-5"> </span>
+                                    <div class="col-sm-7">
+                                        <!--<button ng-disabled="!categoryForm.$valid" ng-click="uploadPic(catFile)">Submit</button>-->
+                                        <button type="submit" class="width-35 pull-right btn btn-sm btn-primary" ng-click="addCategory(category,categoryImage);" data-ng-disabled="categoryForm.$invalid">
+                                            
+                                            Add Category
+                                        </button>
+                                        <img ng-show="categoryImage.dataUrl != null" ng-src="{{categoryImage.dataUrl}}" class="thumb">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- /.page-content -->
